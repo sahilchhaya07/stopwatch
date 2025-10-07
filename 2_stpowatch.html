@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stop watch</title>
+  </head>
+  <style>
+    body {
+      background-color: rgb(111, 182, 245);
+    }
+    button {
+      height: 40px;
+      width: 80px;
+      font-size: 20px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 20px rgb(18, 20, 18);
+      margin: 30px;
+    }
+    #stop {
+      height: 300px;
+      width: 500px;
+      border: 2px solid rgb(11, 11, 11);
+      font-size: 25px;
+      text-align: center;
+      font-family: "Courier New", Courier, monospace;
+      box-shadow: 2px 2px 20px rgb(52, 50, 50);
+      border-radius: 20px;
+      background-color: rgb(76, 76, 185);
+    }
+    h4 {
+      font-size: 45px;
+      font-family: "Courier New", Courier, monospace;
+      text-shadow: 2px 2px 20px rgb(37, 37, 38);
+    }
+    #watch {
+      height: 50px;
+      width: 300px;
+      margin: 2%;
+      font-size: 40px;
+      background-color: rgb(233, 235, 238);
+      color: rgb(10, 11, 11);
+      transform: translate(24%, 5%);
+      box-shadow: 2px 2px 20px rgb(63, 65, 63);
+      border-radius: 15px;
+      padding: 10px;
+      border: 2px solid black;
+    }
+  </style>
+  <script>
+    let hr = 0;
+    let min = 0;
+    let sec = 0;
+    let stoptime = true;
+    function reset() {
+      hr = 0;
+      min = 0;
+      sec = 0;
+      hr = hr < 10 ? "0" + hr : hr;
+      min = min < 10 ? "0" + min : min;
+      sec = sec < 10 ? "0" + sec : sec;
+    }
+    function stop() {
+      clearInterval(stoptime);
+    }
+    hr = hr < 10 ? "0" + hr : hr;
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
+    function start() {
+      stoptime = setInterval(() => {
+        sec++;
+        if (sec == 59) {
+          min++;
+          sec = 0;
+        }
+        if (min == 59) {
+          hr++;
+          min = 0;
+        }
+
+        document.getElementById("watch").innerHTML =
+          hr + " : " + min + " : " + sec;
+      }, 1000);
+    }
+  </script>
+  <body>
+    <h4 align="center">javascript stop watch</h4>
+    <center>
+      <div id="stop">
+        <p>stop watch</p>
+        <div id="watch"></div>
+        <button onclick="start()" id="start">start</button>
+        <button onclick="stop()">stop</button>
+        <button onclick="reset()">reset</button>
+      </div>
+    </center>
+  </body>
+</html>
